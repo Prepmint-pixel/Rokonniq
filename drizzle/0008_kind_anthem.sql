@@ -1,0 +1,20 @@
+CREATE TABLE `billingHistory` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`userId` int NOT NULL,
+	`subscriptionId` int,
+	`stripeInvoiceId` varchar(255),
+	`amount` int NOT NULL,
+	`currency` varchar(3) NOT NULL DEFAULT 'usd',
+	`status` enum('draft','open','paid','void','uncollectible') NOT NULL,
+	`description` text,
+	`invoiceUrl` text,
+	`pdfUrl` text,
+	`periodStart` timestamp,
+	`periodEnd` timestamp,
+	`dueDate` timestamp,
+	`paidAt` timestamp,
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+	CONSTRAINT `billingHistory_id` PRIMARY KEY(`id`),
+	CONSTRAINT `billingHistory_stripeInvoiceId_unique` UNIQUE(`stripeInvoiceId`)
+);

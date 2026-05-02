@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <meta name="description" content="ROKONNIQ — Your digital contact card. Connect. Share. Grow." />
+    <meta name="theme-color" content="#0f3478" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="ROKONNIQ" />
+    <meta property="og:description" content="Your digital contact card. Connect. Share. Grow." />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ROKONNIQ" />
+    <meta name="twitter:description" content="Your digital contact card. Connect. Share. Grow." />
+    <meta name="twitter:image" content="/og-image.png" />
+
+    <!-- PWA iOS support -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="ROKONNIQ" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="apple-touch-startup-image" href="/apple-touch-icon.png" />
+
+    <title>ROKONNIQ</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      (function() {
+        var endpoint = "%VITE_ANALYTICS_ENDPOINT%";
+        var siteId = "%VITE_ANALYTICS_WEBSITE_ID%";
+        if (endpoint && !endpoint.startsWith("%")) {
+          var s = document.createElement("script");
+          s.defer = true;
+          s.src = endpoint + "/umami";
+          s.setAttribute("data-website-id", siteId);
+          document.head.appendChild(s);
+        }
+      })();
+    </script>
+  </body>
+
+</html>

@@ -1,0 +1,104 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1776905384019,
+      "tag": "0000_lovely_hawkeye",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1776905838749,
+      "tag": "0001_natural_shooting_star",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1776907065595,
+      "tag": "0002_wonderful_deadpool",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1776908233156,
+      "tag": "0003_dear_wildside",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1776999874195,
+      "tag": "0004_chief_captain_universe",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1777001113860,
+      "tag": "0005_youthful_solo",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1777131570358,
+      "tag": "0006_classy_dagger",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "5",
+      "when": 1777147208306,
+      "tag": "0007_burly_blockbuster",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1777148649203,
+      "tag": "0008_kind_anthem",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "5",
+      "when": 1777152242161,
+      "tag": "0009_silly_ares",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "5",
+      "when": 1777154900907,
+      "tag": "0010_famous_harry_osborn",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "5",
+      "when": 1777157391271,
+      "tag": "0011_open_morbius",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "5",
+      "when": 1777271000000,
+      "tag": "0012_dazzling_christian_walker",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "5",
+      "when": 1777273952336,
+      "tag": "0013_minor_lilith",
+      "breakpoints": true
+    }
+  ]
+}

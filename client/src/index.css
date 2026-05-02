@@ -1,0 +1,237 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  /* ── Rokonniq Brand Palette ── */
+  --rk-blue:        #0f3478;
+  --rk-blue-mid:    #1a4fa8;
+  --rk-blue-light:  #3b82f6;
+  --rk-blue-pale:   #60a5fa;
+  --rk-cyan:        #22d3ee;
+  --rk-bg:          #f4f7fc;
+  --rk-bg-card:     #ffffff;
+  --rk-bg-subtle:   #eef2f9;
+  --rk-bg-muted:    #e4ecf8;
+  --rk-border:      #dce6f5;
+  --rk-border-mid:  #c8d8f0;
+  --rk-text:        #0d1e3a;
+  --rk-text-2:      #3a5070;
+  --rk-text-3:      #7a96b8;
+  --rk-text-4:      #a8bdd6;
+
+  /* ── Tailwind/shadcn token mapping ── */
+  --radius: 0.625rem;
+  --background:             oklch(0.968 0.008 240);   /* #f4f7fc */
+  --foreground:             oklch(0.12 0.04 240);      /* #0d1e3a */
+  --card:                   oklch(1 0 0);
+  --card-foreground:        oklch(0.12 0.04 240);
+  --popover:                oklch(1 0 0);
+  --popover-foreground:     oklch(0.12 0.04 240);
+  --primary:                oklch(0.45 0.18 250);      /* #1a4fa8 */
+  --primary-foreground:     oklch(1 0 0);
+  --secondary:              oklch(0.94 0.015 240);     /* #eef2f9 */
+  --secondary-foreground:   oklch(0.35 0.06 250);
+  --muted:                  oklch(0.92 0.012 240);     /* #e4ecf8 */
+  --muted-foreground:       oklch(0.52 0.07 240);      /* #7a96b8 */
+  --accent:                 oklch(0.55 0.19 255);      /* #3b82f6 */
+  --accent-foreground:      oklch(1 0 0);
+  --destructive:            oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border:                 oklch(0.9 0.02 240);       /* #dce6f5 */
+  --input:                  oklch(0.9 0.02 240);
+  --ring:                   oklch(0.55 0.19 255);
+  --chart-1:                oklch(0.55 0.19 255);
+  --chart-2:                oklch(0.65 0.18 200);
+  --chart-3:                oklch(0.70 0.17 160);
+  --chart-4:                oklch(0.72 0.18 300);
+  --chart-5:                oklch(0.68 0.20 30);
+  --sidebar:                oklch(0.25 0.10 250);      /* #0f3478 */
+  --sidebar-foreground:     oklch(1 0 0);
+  --sidebar-primary:        oklch(0.55 0.19 255);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent:         oklch(0.35 0.12 250);
+  --sidebar-accent-foreground: oklch(1 0 0);
+  --sidebar-border:         oklch(0.35 0.10 250);
+  --sidebar-ring:           oklch(0.75 0.15 195);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem;
+      padding-right: 2rem;
+      max-width: 1280px;
+    }
+  }
+
+  /* ── Rokonniq Sidebar ── */
+  .rk-sidebar {
+    background: var(--rk-blue);
+    box-shadow: 2px 0 16px rgba(15, 52, 120, 0.2);
+  }
+
+  .rk-sidebar-btn {
+    color: rgba(255,255,255,0.45);
+    transition: all 0.15s;
+    border-radius: 10px;
+    position: relative;
+  }
+  .rk-sidebar-btn:hover {
+    background: rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.85);
+  }
+  .rk-sidebar-btn.active {
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+  }
+  .rk-sidebar-btn.active::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 50%;
+    transform: translateY(-50%);
+    width: 3px; height: 22px;
+    background: var(--rk-cyan);
+    border-radius: 0 3px 3px 0;
+  }
+
+  /* ── Rokonniq Topbar ── */
+  .rk-topbar {
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rk-border);
+    box-shadow: 0 1px 8px rgba(15,52,120,0.06);
+  }
+
+  /* ── Rokonniq Card (panel/stat cards) ── */
+  .rk-card {
+    background: var(--rk-bg-card);
+    border: 1.5px solid var(--rk-border);
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(15,52,120,0.07);
+  }
+
+  /* ── Rokonniq primary button ── */
+  .rk-btn-primary {
+    background: linear-gradient(135deg, var(--rk-blue), var(--rk-blue-mid));
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    border: none;
+    box-shadow: 0 2px 10px rgba(15,52,120,0.25);
+    transition: all 0.15s;
+  }
+  .rk-btn-primary:hover {
+    box-shadow: 0 4px 18px rgba(15,52,120,0.35);
+    transform: translateY(-1px);
+  }
+
+  /* ── Preview area dot grid ── */
+  .rk-preview-bg {
+    background-color: var(--rk-bg);
+    background-image: radial-gradient(circle, var(--rk-border) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .rk-preview-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 55% 50% at 50% 50%, rgba(59,130,246,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+}

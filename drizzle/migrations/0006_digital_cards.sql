@@ -1,0 +1,22 @@
+CREATE TABLE `digitalCards` (
+`id` int AUTO_INCREMENT NOT NULL,
+`userId` int NOT NULL,
+`cardId` varchar(64) NOT NULL,
+`name` varchar(255) NOT NULL,
+`title` varchar(255),
+`company` varchar(255),
+`email` varchar(320) NOT NULL,
+`phone` varchar(20),
+`linkedin` text,
+`website` text,
+`bio` text,
+`profileImage` text,
+`cardStyle` text,
+`socialLinks` text,
+`isPrimary` smallint NOT NULL DEFAULT 0,
+`cardType` varchar(50) NOT NULL DEFAULT 'professional',
+`createdAt` timestamp NOT NULL DEFAULT (now()),
+`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+CONSTRAINT `digitalCards_id` PRIMARY KEY(`id`),
+CONSTRAINT `digitalCards_cardId_unique` UNIQUE(`cardId`)
+);

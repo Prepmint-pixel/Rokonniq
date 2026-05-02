@@ -1,0 +1,1 @@
+ALTER TABLE `digitalCards` DROP COLUMN `address`;

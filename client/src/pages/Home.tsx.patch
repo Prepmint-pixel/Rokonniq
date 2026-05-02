@@ -1,0 +1,31 @@
+--- a/client/src/pages/Home.tsx
++++ b/client/src/pages/Home.tsx
+@@ -1,5 +1,6 @@
+ import { useAuth } from "@/_core/hooks/useAuth";
++import { useCardPersistence } from "@/hooks/useCardPersistence";
+ import { Button } from "@/components/ui/button";
+ import { Mail, Phone, Linkedin, Share2, Download, QrCode, Edit2, Globe, Twitter, Github, Instagram, Facebook, Youtube } from "lucide-react";
+ import { useState, useEffect, useRef } from "react";
+@@ -100,10 +101,13 @@ export default function Home() {
+   // The userAuth hooks provides authentication state
+   // To implement login/logout functionality, simply call logout() or redirect to getLoginUrl()
+   let { user, loading, error, isAuthenticated, logout } = useAuth();
++  const { saveCardToServer } = useCardPersistence(cardCollection, setCardCollection);
+ 
+   const [cardCollection, setCardCollection] = useState<CardCollection>(() =>
+     loadCards()
+   );
++  
+   const [showCustomization, setShowCustomization] = useState(false);
+   const [showCardCreation, setShowCardCreation] = useState(false);
+   const [showCardSharing, setShowCardSharing] = useState(false);
+@@ -112,7 +116,7 @@ export default function Home() {
+ 
+   // Save card collection whenever it changes
+   useEffect(() => {
+-    saveCards(cardCollection);
++    saveCards(cardCollection); // Save to localStorage
++    saveCardToServer(cardCollection); // Also save to server if authenticated
+   }, [cardCollection]);
+ 
+   const activeCard = getActiveCard(cardCollection);

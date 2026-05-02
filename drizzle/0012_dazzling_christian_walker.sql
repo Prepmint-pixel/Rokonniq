@@ -1,0 +1,1 @@
+ALTER TABLE `digitalCards` ADD `address` text;
