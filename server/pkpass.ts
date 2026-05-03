@@ -25,7 +25,7 @@ function createPassTemplate(cardData: WalletCardData): Record<string, any> {
     formatVersion: 1,
     passTypeIdentifier: "pass.io.rokonniq.card",
     serialNumber: "unique-serial-number",
-    teamIdentifier: process.env.APPLE_TEAM_ID || "EXAMPLE123" // Replace with your 10-char Apple Team ID,
+    teamIdentifier: process.env.APPLE_TEAM_ID || "EXAMPLE123", // Replace with your 10-char Apple Team ID
     organizationName: "ROKONNIQ",
     description: cardData.description || cardData.title,
     foregroundColor: `rgb(${hexToRgb(cardData.textColor)})`,
