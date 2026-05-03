@@ -3,7 +3,13 @@ import { getDb } from "./db";
 import { userSubscriptions, paymentMethods } from "../drizzle/schema";
 import { eq } from "drizzle-orm";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
+function getStripe() {
+  const key = process.env.STRIPE_SECRET_KEY;
+  if (!key || key.includes("REPLACE_ME")) {
+    throw new Error("STRIPE_SECRET_KEY is not configured");
+  }
+  return new Stripe(key);
+}
 
 /**
  * Handle Stripe webhook events for automatic payment method saving
@@ -73,7 +79,7 @@ async function handleChargeSucceeded(charge: Stripe.Charge) {
     }
 
     // Retrieve payment method details from Stripe
-    const paymentMethod = await stripe.paymentMethods.retrieve(paymentMethodId);
+    const paymentMethod = await getStripe().paymentMethods.retrieve(paymentMethodId);
 
     if (paymentMethod.type !== "card" || !paymentMethod.card) {
       console.log("Payment method is not a card");
@@ -147,7 +153,7 @@ async function handlePaymentIntentSucceeded(paymentIntent: Stripe.PaymentIntent)
     }
 
     // Retrieve payment method details from Stripe
-    const paymentMethod = await stripe.paymentMethods.retrieve(paymentMethodId);
+    const paymentMethod = await getStripe().paymentMethods.retrieve(paymentMethodId);
 
     if (paymentMethod.type !== "card" || !paymentMethod.card) {
       console.log("Payment method is not a card");
@@ -206,7 +212,7 @@ async function handleInvoicePaymentSucceeded(invoice: Stripe.Invoice) {
     const userId = subscription[0].userId;
 
     // Retrieve invoice details to get payment intent
-    const fullInvoice = await stripe.invoices.retrieve(invoice.id);
+    const fullInvoice = await getStripe().invoices.retrieve(invoice.id);
     const paymentIntentId = (fullInvoice as any).payment_intent as string | undefined;
     if (!paymentIntentId) {
       console.log("Invoice has no payment intent");
@@ -214,7 +220,7 @@ async function handleInvoicePaymentSucceeded(invoice: Stripe.Invoice) {
     }
 
     // Retrieve payment intent to get payment method
-    const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId);
+    const paymentIntent = await getStripe().paymentIntents.retrieve(paymentIntentId);
 
     if (!paymentIntent.payment_method) {
       console.log("Payment intent has no payment method");
@@ -238,7 +244,7 @@ async function handleInvoicePaymentSucceeded(invoice: Stripe.Invoice) {
     }
 
     // Retrieve payment method details from Stripe
-    const paymentMethod = await stripe.paymentMethods.retrieve(paymentMethodId);
+    const paymentMethod = await getStripe().paymentMethods.retrieve(paymentMethodId);
 
     if (paymentMethod.type !== "card" || !paymentMethod.card) {
       console.log("Payment method is not a card");
@@ -278,7 +284,7 @@ export function verifyWebhookSignature(
   secret: string
 ): Stripe.Event | null {
   try {
-    return stripe.webhooks.constructEvent(body, signature, secret);
+    return getStripe().webhooks.constructEvent(body, signature, secret);
   } catch (error) {
     console.error("Webhook signature verification failed:", error);
     return null;

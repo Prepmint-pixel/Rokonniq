@@ -5,7 +5,13 @@ import { paymentMethods } from "../drizzle/schema";
 import { eq } from "drizzle-orm";
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
+function getStripe() {
+  const key = process.env.STRIPE_SECRET_KEY;
+  if (!key || key.includes("REPLACE_ME")) {
+    throw new Error("STRIPE_SECRET_KEY is not configured");
+  }
+  return new Stripe(key);
+}
 
 export const paymentMethodsRouter = router({
   /**
@@ -138,7 +144,7 @@ export const paymentMethodsRouter = router({
 
       // Detach from Stripe
       try {
-        await stripe.paymentMethods.detach(pm[0].stripePaymentMethodId);
+        await getStripe().paymentMethods.detach(pm[0].stripePaymentMethodId);
       } catch (error) {
         console.error("Failed to detach payment method from Stripe:", error);
       }
@@ -160,7 +166,7 @@ export const paymentMethodsRouter = router({
     }
 
     try {
-      const setupIntent = await stripe.setupIntents.create({
+      const setupIntent = await getStripe().setupIntents.create({
         payment_method_types: ["card"],
         metadata: {
           userId: ctx.user.id,

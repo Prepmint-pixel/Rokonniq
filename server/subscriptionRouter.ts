@@ -5,7 +5,13 @@ import { subscriptionPlans, userSubscriptions, stripeEvents } from "../drizzle/s
 import { eq } from "drizzle-orm";
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "");
+function getStripe() {
+  const key = process.env.STRIPE_SECRET_KEY;
+  if (!key || key.includes("REPLACE_ME")) {
+    throw new Error("STRIPE_SECRET_KEY is not configured");
+  }
+  return new Stripe(key);
+}
 
 const seedPlans = async (db: any) => {
   const existingPlans = await db.select().from(subscriptionPlans).limit(1);
@@ -155,7 +161,7 @@ export const subscriptionRouter = router({
       let customerId: string | undefined = (userSub[0]?.stripeCustomerId as string | undefined) || undefined;
 
       if (!customerId) {
-        const customer = await stripe.customers.create({
+        const customer = await getStripe().customers.create({
           email: ctx.user.email || "",
           metadata: {
             userId: ctx.user.id.toString(),
@@ -164,7 +170,7 @@ export const subscriptionRouter = router({
         customerId = (customer.id || "") as string;
       }
 
-      const session = await stripe.checkout.sessions.create({
+      const session = await getStripe().checkout.sessions.create({
         customer: customerId || undefined,
         payment_method_types: ["card"],
         line_items: [
