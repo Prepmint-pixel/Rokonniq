@@ -2,6 +2,11 @@ import { PKPass } from "passkit-generator";
 import * as fs from "fs";
 import * as path from "path";
 import { getPKPassIcons } from "./pkpassIcons";
+import { fileURLToPath } from "url";
+import path from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 interface WalletCardData {
   title: string;
