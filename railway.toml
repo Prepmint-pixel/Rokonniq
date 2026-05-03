@@ -1,6 +1,9 @@
 [build]
 builder = "NIXPACKS"
-buildCommand = "pnpm install && pnpm build"
+buildCommand = "pnpm install --frozen-lockfile && pnpm build"
+
+[build.nixpacksPlan.phases.setup]
+nixPkgs = ["nodejs_22"]
 
 [deploy]
 startCommand = "node dist/server/_core/index.js"
